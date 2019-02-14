@@ -16,7 +16,7 @@ public class IntHashMap implements IntMap{
 
     private int size = 0;
     private Entry[] table = new Entry[16];
-    private int[] localCount = new int[table.length];
+    //private int[] localCount = new int[table.length];
     private double loadFactor;
 
     private int indexCalc(int key) {
@@ -40,13 +40,16 @@ public class IntHashMap implements IntMap{
 
     @Override
     public int get(int key) {
-
-        return 0;
+        Entry tmp = table[indexCalc(key)];
+        while (tmp.next != null){
+            tmp = tmp.next;
+        }
+        return tmp.value;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class IntHashMap implements IntMap{
             newEntry.next = last;
             //...
         }
-        localCount[indexCalc(key)] ++;
+        //localCount[indexCalc(key)] ++;
         size++;
     }
 
@@ -72,6 +75,6 @@ public class IntHashMap implements IntMap{
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 }
