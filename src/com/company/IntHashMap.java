@@ -45,13 +45,13 @@ public class IntHashMap implements IntMap{
 
     @Override
     public boolean containsValue(int value) {
-        for (i = 0; i < table.length; i++) {
-			Entry tmp = table[indexCalc(key)];
+        for (int i = 0; i < table.length; i++) {
+			Entry tmp = table[i];
 			while (tmp.next != null) {
-				tmp = tmp.next;
-				if (tmp.value == value) {
-					return true;
-				}
+			    tmp = tmp.next;
+			    if (tmp.value == value) {
+                        return true;
+			    }
 			}
 		}
 		return false;
@@ -89,7 +89,6 @@ public class IntHashMap implements IntMap{
 
     @Override
     public void remove(int key) {
-		Entry tmp = table[indexCalc(key)];
 
     }
 
