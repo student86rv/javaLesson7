@@ -25,17 +25,36 @@ public class IntHashMap implements IntMap{
 
     @Override
     public void clear() {
-
+		for (int i = 0; i < table.length; i++) {
+			table[i] = null;
+		}
+		size = 0;
     }
 
     @Override
     public boolean containsKey(int key) {
+		Entry tmp = table[indexCalc(key)];
+		while (tmp.next != null){
+            tmp = tmp.next;
+			if (tmp.key == key) {
+				return true;
+			}
+        }
         return false;
     }
 
     @Override
     public boolean containsValue(int value) {
-        return false;
+        for (i = 0; i < table.length; i++) {
+			Entry tmp = table[indexCalc(key)];
+			while (tmp.next != null) {
+				tmp = tmp.next;
+				if (tmp.value == value) {
+					return true;
+				}
+			}
+		}
+		return false;
     }
 
     @Override
@@ -70,6 +89,7 @@ public class IntHashMap implements IntMap{
 
     @Override
     public void remove(int key) {
+		Entry tmp = table[indexCalc(key)];
 
     }
 
